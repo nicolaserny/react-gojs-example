@@ -12,7 +12,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React + Redux + Gojs Example</h1>
+          <h1 className="App-title">React + Redux + GoJS Example</h1>
         </header>
         <AppButtons />
         <SelectionDetails />
