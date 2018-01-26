@@ -1,0 +1,29 @@
+{
+  "name": "react-gojs-example",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "gojs": "^1.8.10",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux-logger": "^3.0.6",
+    "typescript-fsa": "^2.5.0",
+    "typescript-fsa-reducers": "^0.4.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.0",
+    "@types/node": "^9.3.0",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
+    "react-scripts-ts": "2.13.0",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  }
+}
