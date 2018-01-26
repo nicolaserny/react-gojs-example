@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as go from 'gojs';
-import { Diagram, ToolManager } from 'gojs';
+import { Diagram, ToolManager, Node } from 'gojs';
 import { GraphModel, NodeModel, LinkModel } from './reducers/graphReducer';
 
 interface GraphViewProps {
     model: GraphModel;
+    onNodeSelection: (key: string, isSelected: boolean) => void;
 }
 
 interface GojsLinkModel extends go.Model {
@@ -75,7 +76,7 @@ class GraphView extends React.PureComponent<GraphViewProps> {
         this.myDiagram.allowHorizontalScroll = true;
         this.myDiagram.allowVerticalScroll = true;
         this.myDiagram.allowZoom = false;
-        this.myDiagram.allowSelect = false;
+        this.myDiagram.allowSelect = true;
         this.myDiagram.autoScale = Diagram.Uniform;
         this.myDiagram.contentAlignment = go.Spot.LeftCenter;
         this.myDiagram.toolManager.panningTool.isEnabled = false;
@@ -86,6 +87,7 @@ class GraphView extends React.PureComponent<GraphViewProps> {
             $(
                 go.Node,
                 'Auto',  // the Shape will go around the TextBlock
+                {selectionChanged: (node: Node) => this.props.onNodeSelection(node.key as string, node.isSelected)},
                 $(
                     go.Shape,
                     'RoundedRectangle',

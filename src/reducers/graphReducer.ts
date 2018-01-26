@@ -1,9 +1,10 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { Reducer } from 'redux';
-import { init, updateNodeColor, addNode, AddNodeParamter, } from '../actions/graph';
+import { init, updateNodeColor, addNode, AddNodeParamter, nodeSelected, nodeDeselected, } from '../actions/graph';
 
 export interface GraphState {
     model: GraphModel;
+    selectedNodeKeys: string[];
 }
 
 export interface GraphModel {
@@ -74,11 +75,40 @@ const addNodeHandler = (state: GraphState, payload: AddNodeParamter): GraphState
     };
 };
 
+const nodeSelectedHandler = (state: GraphState, payload: string): GraphState => {
+    return {
+        ...state,
+        selectedNodeKeys: [
+            ...state.selectedNodeKeys,
+            payload
+        ]
+    };
+};
+
+const nodeDeselectedHandler = (state: GraphState, payload: string): GraphState => {
+    const nodeIndexToRemove = state.selectedNodeKeys.findIndex(key => key === payload);
+    if (nodeIndexToRemove === -1) {
+        return {
+            ...state
+        };
+    }
+    return {
+        ...state,
+        selectedNodeKeys: [
+            ...state.selectedNodeKeys.slice(0, nodeIndexToRemove),
+            ...state.selectedNodeKeys.slice(nodeIndexToRemove + 1)
+        ]
+    };
+};
+
 export const graphReducer: Reducer<GraphState> =
-    reducerWithInitialState<GraphState>({ model: { nodeDataArray: [], linkDataArray: [] } })
+    reducerWithInitialState<GraphState>({ model: { nodeDataArray: [], linkDataArray: [] }, selectedNodeKeys: [] })
         .case(init, initHandler)
         .case(updateNodeColor, updateNodeColorHandler)
         .case(addNode, addNodeHandler)
+        .case(nodeSelected, nodeSelectedHandler)
+        .case(nodeDeselected, nodeDeselectedHandler)
         .build();
 
 export const modelSelector = (state: GraphState) => state.model;
+export const nodeSelectionSelector = (state: GraphState) => state.selectedNodeKeys;

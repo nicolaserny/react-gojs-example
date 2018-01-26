@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './GraphButtons.css';
 import { GraphState } from './reducers/graphReducer';
 import { connect, Dispatch } from 'react-redux';
 import { init, updateNodeColor, addNode } from './actions/graph';
@@ -45,7 +44,7 @@ const mapDispatchToProps = (dispatch: Dispatch<GraphState>): GraphButtonsDispatc
     };
 };
 
-const GraphButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: GraphButtonsDispatchProps) => {
+const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: GraphButtonsDispatchProps) => {
     return (
         <div className="centered-container">
             <div className="inline-element">
@@ -64,4 +63,4 @@ const GraphButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: G
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(GraphButtons);
+)(AppButtons);
