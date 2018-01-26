@@ -1,6 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { Reducer } from 'redux';
-import { init, updateNodeColor, addNode, AddNodeParamter, nodeSelected, nodeDeselected, } from '../actions/graph';
+import { init, updateNodeColor, addNode, nodeSelected, nodeDeselected, } from '../actions/graph';
 
 export interface GraphState {
     model: GraphModel;
@@ -62,14 +62,18 @@ const updateNodeColorHandler = (state: GraphState): GraphState => {
     };
 };
 
-const addNodeHandler = (state: GraphState, payload: AddNodeParamter): GraphState => {
+const addNodeHandler = (state: GraphState, payload: string): GraphState => {
+    const linksToAdd: LinkModel[] = state.selectedNodeKeys.map(parent => {
+        return { from: parent, to: payload };
+    }
+    );
     return {
         ...state,
         model: {
             ...state.model,
-            nodeDataArray: [...state.model.nodeDataArray, { key: payload.nodeKey, color: getRandomColor() }],
-            linkDataArray: payload.parentNodeKey ?
-                [...state.model.linkDataArray, { from: payload.parentNodeKey, to: payload.nodeKey }] :
+            nodeDataArray: [...state.model.nodeDataArray, { key: payload, color: getRandomColor() }],
+            linkDataArray: linksToAdd.length > 0 ?
+                [...state.model.linkDataArray].concat(linksToAdd) :
                 [...state.model.linkDataArray]
         }
     };

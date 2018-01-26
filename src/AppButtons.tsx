@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: Dispatch<GraphState>): GraphButtonsDispatc
                 linkDataArray:
                     [
                         { from: 'Alpha', to: 'Beta' },
-                        { from: 'Alpha', to: 'Gamma' },                        
+                        { from: 'Alpha', to: 'Gamma' },
                         { from: 'Beta', to: 'Delta' },
                         { from: 'Gamma', to: 'Omega' }
                     ]
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch<GraphState>): GraphButtonsDispatc
         )),
         updateNodeColorHandler: () => dispatch(updateNodeColor()),
         addNodeHandler: () => {
-            dispatch(addNode({ nodeKey: 'node' + nodeId, parentNodeKey: 'Delta' }));
+            dispatch(addNode('node' + nodeId));
             nodeId += 1;
         }
     };
@@ -54,7 +54,12 @@ const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: Gra
                 <button type="button" onClick={() => updateNodeColorHandler()}>Update node color</button>
             </div>
             <div className="inline-element">
-                <button type="button" onClick={() => addNodeHandler()}>Add node</button>
+                <button
+                    type="button"
+                    onClick={() => addNodeHandler()}
+                >
+                    Add node with selected node(s) as parent(s)
+                </button>
             </div>
         </div>
     );
