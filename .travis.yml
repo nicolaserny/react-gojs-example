@@ -7,8 +7,18 @@ branches:
   - master
 os:
 - linux
+cache:
+  directories:
+  - node_modules
 install:
 - yarn install
-- yarn build
+- yarn run build
 script:
 - yarn test --silent
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: build
+  on:
+    branch: master
