@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { GraphState } from './reducers/graphReducer';
+import { DiagramState } from '../reducers/diagramReducer';
 import { connect, Dispatch } from 'react-redux';
-import { init, updateNodeColor, addNode } from './actions/graph';
+import { init, updateNodeColor, addNode } from '../actions/diagram';
 
-export interface GraphButtonsDispatchProps {
+export interface AppButtonsDispatchProps {
     initHandler: () => void;
     updateNodeColorHandler: () => void;
     addNodeHandler: () => void;
 }
 
-const mapStateToProps = (state: GraphState) => {
+const mapStateToProps = (state: DiagramState) => {
     return {
         ...state
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<GraphState>): GraphButtonsDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<DiagramState>): AppButtonsDispatchProps => {
     let nodeId = 0;
     return {
         initHandler: () => dispatch(init(
@@ -44,11 +44,11 @@ const mapDispatchToProps = (dispatch: Dispatch<GraphState>): GraphButtonsDispatc
     };
 };
 
-const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: GraphButtonsDispatchProps) => {
+const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: AppButtonsDispatchProps) => {
     return (
         <div className="centered-container">
             <div className="inline-element">
-                <button type="button" onClick={() => initHandler()} >Init graph</button>
+                <button type="button" onClick={() => initHandler()} >Init diagram</button>
             </div>
             <div className="inline-element">
                 <button type="button" onClick={() => updateNodeColorHandler()}>Update node color</button>

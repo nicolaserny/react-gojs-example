@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './App.css';
-import AppButtons from './AppButtons';
-import GraphContainer from './GraphContainer';
-import SelectionDetails from './SelectionDetails';
+import AppButtons from './components/AppButtons';
+import MyDiagramContainer from './components/MyDiagramContainer';
+import SelectionDetails from './components/SelectionDetails';
 
 const logo = require('./logo.svg');
 
@@ -16,7 +16,7 @@ class App extends React.Component {
         </header>
         <AppButtons />
         <SelectionDetails />
-        <GraphContainer />
+        <MyDiagramContainer />
       </div>
     );
   }

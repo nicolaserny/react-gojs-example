@@ -1,28 +1,18 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { Reducer } from 'redux';
-import { init, updateNodeColor, addNode, nodeSelected, nodeDeselected, } from '../actions/graph';
+import { init, updateNodeColor, addNode, nodeSelected, nodeDeselected, } from '../actions/diagram';
+import { BaseNodeModel, DiagramModel, LinkModel } from '../model/model';
 
-export interface GraphState {
-    model: GraphModel;
+export interface DiagramState {
+    model: DiagramModel<NodeModel, LinkModel>;
     selectedNodeKeys: string[];
 }
 
-export interface GraphModel {
-    nodeDataArray: NodeModel[];
-    linkDataArray: LinkModel[];
-}
-
-export interface NodeModel {
-    key: string;
+export interface NodeModel extends BaseNodeModel {
     color: string;
 }
 
-export interface LinkModel {
-    from: string;
-    to: string;
-}
-
-const initHandler = (state: GraphState, payload: GraphModel): GraphState => {
+const initHandler = (state: DiagramState, payload: DiagramModel<NodeModel, LinkModel>): DiagramState => {
     return {
         ...state,
         model: payload
@@ -45,7 +35,7 @@ const getRandomColor = () => {
     return colors[Math.floor(Math.random() * (colors.length))];
 };
 
-const updateNodeColorHandler = (state: GraphState): GraphState => {
+const updateNodeColorHandler = (state: DiagramState): DiagramState => {
     const updatedNodes = state.model.nodeDataArray.map(node => {
         return {
             ...node,
@@ -62,7 +52,7 @@ const updateNodeColorHandler = (state: GraphState): GraphState => {
     };
 };
 
-const addNodeHandler = (state: GraphState, payload: string): GraphState => {
+const addNodeHandler = (state: DiagramState, payload: string): DiagramState => {
     const linksToAdd: LinkModel[] = state.selectedNodeKeys.map(parent => {
         return { from: parent, to: payload };
     }
@@ -79,7 +69,7 @@ const addNodeHandler = (state: GraphState, payload: string): GraphState => {
     };
 };
 
-const nodeSelectedHandler = (state: GraphState, payload: string): GraphState => {
+const nodeSelectedHandler = (state: DiagramState, payload: string): DiagramState => {
     return {
         ...state,
         selectedNodeKeys: [
@@ -89,7 +79,7 @@ const nodeSelectedHandler = (state: GraphState, payload: string): GraphState => 
     };
 };
 
-const nodeDeselectedHandler = (state: GraphState, payload: string): GraphState => {
+const nodeDeselectedHandler = (state: DiagramState, payload: string): DiagramState => {
     const nodeIndexToRemove = state.selectedNodeKeys.findIndex(key => key === payload);
     if (nodeIndexToRemove === -1) {
         return {
@@ -105,8 +95,8 @@ const nodeDeselectedHandler = (state: GraphState, payload: string): GraphState =
     };
 };
 
-export const graphReducer: Reducer<GraphState> =
-    reducerWithInitialState<GraphState>(
+export const diagramReducer: Reducer<DiagramState> =
+    reducerWithInitialState<DiagramState>(
         { model: { nodeDataArray: [{ key: 'Root', color: 'lightblue' }], linkDataArray: [] }, selectedNodeKeys: [] })
         .case(init, initHandler)
         .case(updateNodeColor, updateNodeColorHandler)
@@ -115,5 +105,5 @@ export const graphReducer: Reducer<GraphState> =
         .case(nodeDeselected, nodeDeselectedHandler)
         .build();
 
-export const modelSelector = (state: GraphState) => state.model;
-export const nodeSelectionSelector = (state: GraphState) => state.selectedNodeKeys;
+export const modelSelector = (state: DiagramState) => state.model;
+export const nodeSelectionSelector = (state: DiagramState) => state.selectedNodeKeys;

@@ -5,11 +5,11 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { Provider } from 'react-redux';
 import { create } from './store';
-import { graphReducer } from './reducers/graphReducer';
+import { diagramReducer } from './reducers/diagramReducer';
 
 ReactDOM.render(
   (
-    <Provider store={create(graphReducer)} >
+    <Provider store={create(diagramReducer)} >
       <App />
     </Provider>
   ),

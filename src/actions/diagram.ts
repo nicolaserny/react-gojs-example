@@ -1,9 +1,10 @@
 import { actionCreatorFactory } from 'typescript-fsa';
-import { GraphModel } from '../reducers/graphReducer';
+import { NodeModel } from '../reducers/diagramReducer';
+import { DiagramModel, LinkModel } from '../model/model';
 
-const actionCreator = actionCreatorFactory('GRAPH');
+const actionCreator = actionCreatorFactory('DIAGRAM');
 
-export const init = actionCreator<GraphModel>('INIT');
+export const init = actionCreator<DiagramModel<NodeModel, LinkModel>>('INIT');
 export const updateNodeColor = actionCreator('UPDATE_NODE_COLOR');
 export const addNode = actionCreator<string>('ADD_NODE');
 export const nodeSelected = actionCreator<string>('NODE_SELECTED');

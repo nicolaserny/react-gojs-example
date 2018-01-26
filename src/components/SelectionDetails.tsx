@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { GraphState, nodeSelectionSelector } from './reducers/graphReducer';
+import { DiagramState, nodeSelectionSelector } from '../reducers/diagramReducer';
 import { connect } from 'react-redux';
 
 interface SelectionDetailsStateProps {
     nodes: string[];
 }
 
-const mapStateToProps = (state: GraphState): SelectionDetailsStateProps => {
+const mapStateToProps = (state: DiagramState): SelectionDetailsStateProps => {
     return {
         nodes: nodeSelectionSelector(state)
     };
