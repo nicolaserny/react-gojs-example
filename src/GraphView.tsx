@@ -69,7 +69,13 @@ class GraphView extends React.PureComponent<GraphViewProps> {
             'myDiagramDiv',  // create a Diagram for the DIV HTML element
             {
                 initialContentAlignment: go.Spot.LeftCenter,
-                layout: $(go.TreeLayout, { angle: 0, arrangement: go.TreeLayout.ArrangementHorizontal }),
+                layout: $(
+                    go.TreeLayout,
+                    {
+                        angle: 0,
+                        arrangement: go.TreeLayout.ArrangementVertical,
+                        treeStyle: go.TreeLayout.StyleLayered
+                    }),
                 isReadOnly: true
             });
 
@@ -87,7 +93,7 @@ class GraphView extends React.PureComponent<GraphViewProps> {
             $(
                 go.Node,
                 'Auto',  // the Shape will go around the TextBlock
-                {selectionChanged: (node: Node) => this.props.onNodeSelection(node.key as string, node.isSelected)},
+                { selectionChanged: (node: Node) => this.props.onNodeSelection(node.key as string, node.isSelected) },
                 $(
                     go.Shape,
                     'RoundedRectangle',
@@ -102,7 +108,7 @@ class GraphView extends React.PureComponent<GraphViewProps> {
             );
 
         // create the model data that will be represented by Nodes and Links
-        this.myDiagram.model = new go.GraphLinksModel();
+        this.myDiagram.model = new go.GraphLinksModel(this.props.model.nodeDataArray, this.props.model.linkDataArray);
     }
     render() {
         return (

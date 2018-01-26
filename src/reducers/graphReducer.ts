@@ -106,7 +106,8 @@ const nodeDeselectedHandler = (state: GraphState, payload: string): GraphState =
 };
 
 export const graphReducer: Reducer<GraphState> =
-    reducerWithInitialState<GraphState>({ model: { nodeDataArray: [], linkDataArray: [] }, selectedNodeKeys: [] })
+    reducerWithInitialState<GraphState>(
+        { model: { nodeDataArray: [{ key: 'Root', color: 'lightblue' }], linkDataArray: [] }, selectedNodeKeys: [] })
         .case(init, initHandler)
         .case(updateNodeColor, updateNodeColorHandler)
         .case(addNode, addNodeHandler)
