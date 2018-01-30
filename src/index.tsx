@@ -6,6 +6,14 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { create } from './store';
 import { diagramReducer } from './reducers/diagramReducer';
+import * as go from 'gojs';
+
+const gojsKey = process.env.REACT_APP_GOJS_KEY;
+
+if (gojsKey) {
+  // tslint:disable-next-line:no-any
+  (go as any).licenseKey = gojsKey;
+}
 
 ReactDOM.render(
   (

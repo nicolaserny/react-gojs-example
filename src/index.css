@@ -10,3 +10,9 @@ body {
 html {
   height: 100%;
 }
+
+.gshHeader {
+  border-color: #eabadb;
+  font-size: 15;
+  margin-bottom: 10;
+}
