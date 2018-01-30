@@ -82,9 +82,7 @@ const nodeSelectedHandler = (state: DiagramState, payload: string): DiagramState
 const nodeDeselectedHandler = (state: DiagramState, payload: string): DiagramState => {
     const nodeIndexToRemove = state.selectedNodeKeys.findIndex(key => key === payload);
     if (nodeIndexToRemove === -1) {
-        return {
-            ...state
-        };
+        return state;
     }
     return {
         ...state,
