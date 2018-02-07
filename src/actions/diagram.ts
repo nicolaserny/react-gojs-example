@@ -1,6 +1,6 @@
 import { actionCreatorFactory } from 'typescript-fsa';
 import { NodeModel } from '../reducers/diagramReducer';
-import { DiagramModel, LinkModel } from '../model/model';
+import { DiagramModel, LinkModel } from 'react-gojs';
 
 const actionCreator = actionCreatorFactory('DIAGRAM');
 

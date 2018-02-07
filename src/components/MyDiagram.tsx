@@ -2,8 +2,7 @@ import * as React from 'react';
 import * as go from 'gojs';
 import { Diagram, ToolManager, Node } from 'gojs';
 import { NodeModel } from '../reducers/diagramReducer';
-import GojsDiagram from './GojsDiagram';
-import { DiagramModel, LinkModel } from '../model/model';
+import { DiagramModel, LinkModel, GojsDiagram } from 'react-gojs';
 import './MyDiagram.css';
 
 interface MyDiagramProps {
@@ -28,7 +27,7 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
         );
     }
 
-    private createDiagram(diagramId: string) {
+    private createDiagram(diagramId: string): Diagram {
         const $ = go.GraphObject.make;
 
         const myDiagram: Diagram = $(

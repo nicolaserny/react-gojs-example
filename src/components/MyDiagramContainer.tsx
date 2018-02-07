@@ -3,7 +3,7 @@ import MyDiagram from './MyDiagram';
 import { DiagramState, modelSelector, NodeModel } from '../reducers/diagramReducer';
 import { connect, Dispatch } from 'react-redux';
 import { nodeSelected, nodeDeselected } from '../actions/diagram';
-import { DiagramModel, LinkModel } from '../model/model';
+import { DiagramModel, LinkModel } from 'react-gojs';
 
 interface MyDiagramContainerStateProps {
     model: DiagramModel<NodeModel, LinkModel>;

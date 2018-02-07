@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { Reducer } from 'redux';
 import { init, updateNodeColor, addNode, nodeSelected, nodeDeselected, } from '../actions/diagram';
-import { BaseNodeModel, DiagramModel, LinkModel } from '../model/model';
+import { BaseNodeModel, DiagramModel, LinkModel } from 'react-gojs';
 
 export interface DiagramState {
     model: DiagramModel<NodeModel, LinkModel>;
