@@ -12,9 +12,8 @@ cache:
   - node_modules
 install:
 - yarn install
-- yarn run build
 script:
-- yarn test --silent
+- yarn run build
 deploy:
   edge:
     branch: v1.8.47

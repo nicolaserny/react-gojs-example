@@ -3,3 +3,8 @@
     flex: 1 1 auto;
     margin: auto;
 }
+
+canvas {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}

@@ -2,12 +2,14 @@ import * as React from 'react';
 import * as go from 'gojs';
 import { Diagram, ToolManager, Node } from 'gojs';
 import { NodeModel } from '../reducers/diagramReducer';
-import { DiagramModel, LinkModel, GojsDiagram } from 'react-gojs';
+import { DiagramModel, LinkModel, GojsDiagram, ModelChangeEvent } from 'react-gojs';
 import './MyDiagram.css';
 
 interface MyDiagramProps {
     model: DiagramModel<NodeModel, LinkModel>;
     onNodeSelection: (key: string, isSelected: boolean) => void;
+
+    onModelChange: (event: ModelChangeEvent<NodeModel, LinkModel>) => void;
 }
 
 class MyDiagram extends React.PureComponent<MyDiagramProps> {
@@ -23,6 +25,7 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
                 model={this.props.model}
                 createDiagram={this.createDiagram}
                 className="myDiagram"
+                onModelChange={this.props.onModelChange}
             />
         );
     }
@@ -42,7 +45,7 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
                         arrangement: go.TreeLayout.ArrangementVertical,
                         treeStyle: go.TreeLayout.StyleLayered
                     }),
-                isReadOnly: true,
+                isReadOnly: false,
                 allowHorizontalScroll: true,
                 allowVerticalScroll: true,
                 allowZoom: false,

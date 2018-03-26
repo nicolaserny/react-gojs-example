@@ -1,6 +1,10 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { Reducer } from 'redux';
-import { init, updateNodeColor, addNode, nodeSelected, nodeDeselected, } from '../actions/diagram';
+import {
+    init,
+    updateNodeColor,
+    addNode, nodeSelected, nodeDeselected, removeNode, removeLink,
+} from '../actions/diagram';
 import { BaseNodeModel, DiagramModel, LinkModel } from 'react-gojs';
 
 export interface DiagramState {
@@ -69,6 +73,41 @@ const addNodeHandler = (state: DiagramState, payload: string): DiagramState => {
     };
 };
 
+const removeNodeHandler = (state: DiagramState, payload: string): DiagramState => {
+    const nodeToRemoveIndex = state.model.nodeDataArray.findIndex(node => node.key === payload);
+    if (nodeToRemoveIndex === -1) {
+        return state;
+    }
+    return {
+        ...state,
+        model: {
+            ...state.model,
+            nodeDataArray: [
+                ...state.model.nodeDataArray.slice(0, nodeToRemoveIndex),
+                ...state.model.nodeDataArray.slice(nodeToRemoveIndex + 1)
+            ],
+        }
+    };
+};
+
+const removeLinkHandler = (state: DiagramState, payload: LinkModel): DiagramState => {
+    const linkToRemoveIndex = state.model.linkDataArray.findIndex(link =>
+        link.from === payload.from && link.to === payload.to);
+    if (linkToRemoveIndex === -1) {
+        return state;
+    }
+    return {
+        ...state,
+        model: {
+            ...state.model,
+            linkDataArray: [
+                ...state.model.linkDataArray.slice(0, linkToRemoveIndex),
+                ...state.model.linkDataArray.slice(linkToRemoveIndex + 1)
+            ],
+        }
+    };
+};
+
 const nodeSelectedHandler = (state: DiagramState, payload: string): DiagramState => {
     return {
         ...state,
@@ -99,6 +138,8 @@ export const diagramReducer: Reducer<DiagramState> =
         .case(init, initHandler)
         .case(updateNodeColor, updateNodeColorHandler)
         .case(addNode, addNodeHandler)
+        .case(removeNode, removeNodeHandler)
+        .case(removeLink, removeLinkHandler)
         .case(nodeSelected, nodeSelectedHandler)
         .case(nodeDeselected, nodeDeselectedHandler)
         .build();
