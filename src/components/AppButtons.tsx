@@ -49,26 +49,25 @@ const mapDispatchToProps =
         };
     };
 
-const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: AppButtonsDispatchProps) => {
-    return (
+class AppButtons extends React.Component<AppButtonsDispatchProps, {}> {
+    render() {
+        return (
         <div className="centered-container">
-            <div className="inline-element">
-                <button type="button" onClick={() => initHandler()} >Init diagram</button>
-            </div>
-            <div className="inline-element">
-                <button type="button" onClick={() => updateNodeColorHandler()}>Update node color</button>
-            </div>
-            <div className="inline-element">
-                <button
-                    type="button"
-                    onClick={() => addNodeHandler()}
-                >
-                    Add node with selected node(s) as parent(s)
-                </button>
-            </div>
+        <div className="inline-element">
+            <button type="button" onClick={() => this.props.initHandler()} >Init diagram</button>
         </div>
-    );
-};
+        <div className="inline-element">
+            <button type="button" onClick={() => this.props.updateNodeColorHandler()}>Update node color</button>
+        </div>
+        <div className="inline-element">
+            <button type="button" onClick={() => this.props.addNodeHandler()}>
+            Add node with selected node(s) as parent(s)
+            </button>
+        </div>
+    </div>
+        );
+    }
+}
 
 export default connect(
     mapStateToProps,
