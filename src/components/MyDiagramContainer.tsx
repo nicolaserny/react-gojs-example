@@ -6,8 +6,10 @@ import { nodeSelected, nodeDeselected, removeNode, removeLink } from '../actions
 import { DiagramModel, LinkModel, ModelChangeEvent, ModelChangeEventType } from 'react-gojs';
 import { Action } from 'typescript-fsa';
 
-interface MyDiagramContainerStateProps {
+interface MyDiagramContainerProps {
     model: DiagramModel<NodeModel, LinkModel>;
+    onNodeSelection: (key: string, isSelected: boolean) => void;
+    onModelChange: (event: ModelChangeEvent<NodeModel, LinkModel>) => void;
 }
 
 interface MyDiagramContainerDispatchProps {
@@ -48,16 +50,17 @@ const mapDispatchToProps =
         };
     };
 
-const MyDiagramContainer =
-    ({ model, onNodeSelection, onModelChange }: MyDiagramContainerStateProps & MyDiagramContainerDispatchProps) => {
+class MyDiagramContainer extends React.Component<MyDiagramContainerProps, {}> {
+    render() {
         return (
-            <MyDiagram
-                model={model}
-                onNodeSelection={onNodeSelection}
-                onModelChange={onModelChange}
-            />
+        <MyDiagram
+                model={this.props.model}
+                onNodeSelection={this.props.onNodeSelection}
+                onModelChange={this.props.onModelChange}
+        />
         );
-    };
+    }
+}
 
 export default connect(
     mapStateToProps,

@@ -12,12 +12,12 @@ const mapStateToProps = (state: DiagramState): SelectionDetailsStateProps => {
     };
 };
 
-const SelectionDetails = ({ nodes }: SelectionDetailsStateProps) => {
-    const message = nodes.reduce((result: string, current: string) => result + ' ' + current, '');
-    return (
-        <div>{nodes.length === 0 ? 'No selection' : 'Selection: ' + message}</div>
-    );
-};
+class SelectionDetails extends React.Component<SelectionDetailsStateProps, {}> {
+    message = this.props.nodes.reduce((result: string, current: string) => result + ' ' + current, '');
+    render() {
+        return <div> {this.props.nodes.length === 0 ? 'No selection' : 'Selection: ' + this.message} </div>;
+    }
+}
 
 export default connect(
     mapStateToProps
