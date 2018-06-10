@@ -17,14 +17,18 @@ const mapStateToProps = (state: DiagramState) => {
     };
 };
 
-const mapDispatchToProps =
-    (dispatch: Dispatch<
-        Action<DiagramModel<NodeModel, LinkModel>> | Action<void> | Action<string>
-        >): AppButtonsDispatchProps => {
-        let nodeId = 0;
-        return {
-            initHandler: () => dispatch(init(
-                {
+const mapDispatchToProps = (
+    dispatch: Dispatch<
+        | Action<DiagramModel<NodeModel, LinkModel>>
+        | Action<void>
+        | Action<string>
+    >
+): AppButtonsDispatchProps => {
+    let nodeId = 0;
+    return {
+        initHandler: () =>
+            dispatch(
+                init({
                     nodeDataArray: [
                         { key: 'Alpha', color: 'lightblue' },
                         { key: 'Beta', color: 'orange' },
@@ -32,37 +36,41 @@ const mapDispatchToProps =
                         { key: 'Delta', color: 'pink' },
                         { key: 'Omega', color: 'grey' }
                     ],
-                    linkDataArray:
-                        [
-                            { from: 'Alpha', to: 'Beta' },
-                            { from: 'Alpha', to: 'Gamma' },
-                            { from: 'Beta', to: 'Delta' },
-                            { from: 'Gamma', to: 'Omega' }
-                        ]
-                }
-            )),
-            updateNodeColorHandler: () => dispatch(updateNodeColor()),
-            addNodeHandler: () => {
-                dispatch(addNode('node' + nodeId));
-                nodeId += 1;
-            }
-        };
+                    linkDataArray: [
+                        { from: 'Alpha', to: 'Beta' },
+                        { from: 'Alpha', to: 'Gamma' },
+                        { from: 'Beta', to: 'Delta' },
+                        { from: 'Gamma', to: 'Omega' }
+                    ]
+                })
+            ),
+        updateNodeColorHandler: () => dispatch(updateNodeColor()),
+        addNodeHandler: () => {
+            dispatch(addNode('node' + nodeId));
+            nodeId += 1;
+        }
     };
+};
 
-const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: AppButtonsDispatchProps) => {
+const AppButtons = ({
+    initHandler,
+    updateNodeColorHandler,
+    addNodeHandler
+}: AppButtonsDispatchProps) => {
     return (
         <div className="centered-container">
             <div className="inline-element">
-                <button type="button" onClick={() => initHandler()} >Init diagram</button>
+                <button type="button" onClick={() => initHandler()}>
+                    Init diagram
+                </button>
             </div>
             <div className="inline-element">
-                <button type="button" onClick={() => updateNodeColorHandler()}>Update node color</button>
+                <button type="button" onClick={() => updateNodeColorHandler()}>
+                    Update node color
+                </button>
             </div>
             <div className="inline-element">
-                <button
-                    type="button"
-                    onClick={() => addNodeHandler()}
-                >
+                <button type="button" onClick={() => addNodeHandler()}>
                     Add node with selected node(s) as parent(s)
                 </button>
             </div>

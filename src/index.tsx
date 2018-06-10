@@ -11,16 +11,14 @@ import * as go from 'gojs';
 const gojsKey = process.env.REACT_APP_GOJS_KEY;
 
 if (gojsKey) {
-  // tslint:disable-next-line:no-any
-  (go as any).licenseKey = gojsKey;
+    // tslint:disable-next-line:no-any
+    (go as any).licenseKey = gojsKey;
 }
 
 ReactDOM.render(
-  (
-    <Provider store={create(diagramReducer)} >
-      <App />
-    </Provider>
-  ),
-  document.getElementById('root') as HTMLElement
+    <Provider store={create(diagramReducer)}>
+        <App />
+    </Provider>,
+    document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

@@ -2,7 +2,12 @@ import * as React from 'react';
 import * as go from 'gojs';
 import { Diagram, ToolManager, Node } from 'gojs';
 import { NodeModel } from '../reducers/diagramReducer';
-import { DiagramModel, LinkModel, GojsDiagram, ModelChangeEvent } from 'react-gojs';
+import {
+    DiagramModel,
+    LinkModel,
+    GojsDiagram,
+    ModelChangeEvent
+} from 'react-gojs';
 import './MyDiagram.css';
 
 interface MyDiagramProps {
@@ -13,7 +18,6 @@ interface MyDiagramProps {
 }
 
 class MyDiagram extends React.PureComponent<MyDiagramProps> {
-
     constructor(props: MyDiagramProps) {
         super(props);
         this.createDiagram = this.createDiagram.bind(this);
@@ -33,45 +37,43 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
     private createDiagram(diagramId: string): Diagram {
         const $ = go.GraphObject.make;
 
-        const myDiagram: Diagram = $(
-            go.Diagram,
-            diagramId,
-            {
-                initialContentAlignment: go.Spot.LeftCenter,
-                layout: $(
-                    go.TreeLayout,
-                    {
-                        angle: 0,
-                        arrangement: go.TreeLayout.ArrangementVertical,
-                        treeStyle: go.TreeLayout.StyleLayered
-                    }),
-                isReadOnly: false,
-                allowHorizontalScroll: true,
-                allowVerticalScroll: true,
-                allowZoom: false,
-                allowSelect: true,
-                autoScale: Diagram.Uniform,
-                contentAlignment: go.Spot.LeftCenter
-            });
+        const myDiagram: Diagram = $(go.Diagram, diagramId, {
+            initialContentAlignment: go.Spot.LeftCenter,
+            layout: $(go.TreeLayout, {
+                angle: 0,
+                arrangement: go.TreeLayout.ArrangementVertical,
+                treeStyle: go.TreeLayout.StyleLayered
+            }),
+            isReadOnly: false,
+            allowHorizontalScroll: true,
+            allowVerticalScroll: true,
+            allowZoom: false,
+            allowSelect: true,
+            autoScale: Diagram.Uniform,
+            contentAlignment: go.Spot.LeftCenter
+        });
 
         myDiagram.toolManager.panningTool.isEnabled = false;
         myDiagram.toolManager.mouseWheelBehavior = ToolManager.WheelScroll;
 
-        myDiagram.nodeTemplate =
+        myDiagram.nodeTemplate = $(
+            go.Node,
+            'Auto',
+            {
+                selectionChanged: (node: Node) =>
+                    this.props.onNodeSelection(
+                        node.key as string,
+                        node.isSelected
+                    )
+            },
             $(
-                go.Node,
-                'Auto',
-                { selectionChanged: (node: Node) => this.props.onNodeSelection(node.key as string, node.isSelected) },
-                $(
-                    go.Shape,
-                    'RoundedRectangle',
-                    { strokeWidth: 0 },
-                    new go.Binding('fill', 'color')),
-                $(
-                    go.TextBlock,
-                    { margin: 8 },
-                    new go.Binding('text', 'key'))
-            );
+                go.Shape,
+                'RoundedRectangle',
+                { strokeWidth: 0 },
+                new go.Binding('fill', 'color')
+            ),
+            $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key'))
+        );
 
         return myDiagram;
     }
