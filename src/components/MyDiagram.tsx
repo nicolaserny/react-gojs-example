@@ -2,12 +2,7 @@ import * as React from 'react';
 import * as go from 'gojs';
 import { Diagram, ToolManager, Node } from 'gojs';
 import { NodeModel } from '../reducers/diagramReducer';
-import {
-    DiagramModel,
-    LinkModel,
-    GojsDiagram,
-    ModelChangeEvent
-} from 'react-gojs';
+import { DiagramModel, LinkModel, GojsDiagram, ModelChangeEvent } from 'react-gojs';
 import './MyDiagram.css';
 
 interface MyDiagramProps {
@@ -60,18 +55,9 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
             go.Node,
             'Auto',
             {
-                selectionChanged: (node: Node) =>
-                    this.props.onNodeSelection(
-                        node.key as string,
-                        node.isSelected
-                    )
+                selectionChanged: (node: Node) => this.props.onNodeSelection(node.key as string, node.isSelected)
             },
-            $(
-                go.Shape,
-                'RoundedRectangle',
-                { strokeWidth: 0 },
-                new go.Binding('fill', 'color')
-            ),
+            $(go.Shape, 'RoundedRectangle', { strokeWidth: 0 }, new go.Binding('fill', 'color')),
             $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key'))
         );
 

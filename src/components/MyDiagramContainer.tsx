@@ -1,23 +1,9 @@
 import * as React from 'react';
 import MyDiagram from './MyDiagram';
-import {
-    DiagramState,
-    modelSelector,
-    NodeModel
-} from '../reducers/diagramReducer';
+import { DiagramState, modelSelector, NodeModel } from '../reducers/diagramReducer';
 import { connect, Dispatch } from 'react-redux';
-import {
-    nodeSelected,
-    nodeDeselected,
-    removeNode,
-    removeLink
-} from '../actions/diagram';
-import {
-    DiagramModel,
-    LinkModel,
-    ModelChangeEvent,
-    ModelChangeEventType
-} from 'react-gojs';
+import { nodeSelected, nodeDeselected, removeNode, removeLink } from '../actions/diagram';
+import { DiagramModel, LinkModel, ModelChangeEvent, ModelChangeEventType } from 'react-gojs';
 import { Action } from 'typescript-fsa';
 
 interface MyDiagramContainerStateProps {
@@ -68,13 +54,7 @@ const MyDiagramContainer = ({
     onNodeSelection,
     onModelChange
 }: MyDiagramContainerStateProps & MyDiagramContainerDispatchProps) => {
-    return (
-        <MyDiagram
-            model={model}
-            onNodeSelection={onNodeSelection}
-            onModelChange={onModelChange}
-        />
-    );
+    return <MyDiagram model={model} onNodeSelection={onNodeSelection} onModelChange={onModelChange} />;
 };
 
 export default connect(

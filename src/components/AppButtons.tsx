@@ -18,11 +18,7 @@ const mapStateToProps = (state: DiagramState) => {
 };
 
 const mapDispatchToProps = (
-    dispatch: Dispatch<
-        | Action<DiagramModel<NodeModel, LinkModel>>
-        | Action<void>
-        | Action<string>
-    >
+    dispatch: Dispatch<Action<DiagramModel<NodeModel, LinkModel>> | Action<void> | Action<string>>
 ): AppButtonsDispatchProps => {
     let nodeId = 0;
     return {
@@ -52,11 +48,7 @@ const mapDispatchToProps = (
     };
 };
 
-const AppButtons = ({
-    initHandler,
-    updateNodeColorHandler,
-    addNodeHandler
-}: AppButtonsDispatchProps) => {
+const AppButtons = ({ initHandler, updateNodeColorHandler, addNodeHandler }: AppButtonsDispatchProps) => {
     return (
         <div className="centered-container">
             <div className="inline-element">

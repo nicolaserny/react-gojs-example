@@ -20,27 +20,14 @@ export interface NodeModel extends BaseNodeModel {
     color: string;
 }
 
-const initHandler = (
-    state: DiagramState,
-    payload: DiagramModel<NodeModel, LinkModel>
-): DiagramState => {
+const initHandler = (state: DiagramState, payload: DiagramModel<NodeModel, LinkModel>): DiagramState => {
     return {
         ...state,
         model: payload
     };
 };
 
-const colors = [
-    'lightblue',
-    'orange',
-    'lightgreen',
-    'pink',
-    'yellow',
-    'red',
-    'grey',
-    'magenta',
-    'cyan'
-];
+const colors = ['lightblue', 'orange', 'lightgreen', 'pink', 'yellow', 'red', 'grey', 'magenta', 'cyan'];
 
 const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)];
@@ -71,10 +58,7 @@ const addNodeHandler = (state: DiagramState, payload: string): DiagramState => {
         ...state,
         model: {
             ...state.model,
-            nodeDataArray: [
-                ...state.model.nodeDataArray,
-                { key: payload, color: getRandomColor() }
-            ],
+            nodeDataArray: [...state.model.nodeDataArray, { key: payload, color: getRandomColor() }],
             linkDataArray:
                 linksToAdd.length > 0
                     ? [...state.model.linkDataArray].concat(linksToAdd)
@@ -83,13 +67,8 @@ const addNodeHandler = (state: DiagramState, payload: string): DiagramState => {
     };
 };
 
-const removeNodeHandler = (
-    state: DiagramState,
-    payload: string
-): DiagramState => {
-    const nodeToRemoveIndex = state.model.nodeDataArray.findIndex(
-        node => node.key === payload
-    );
+const removeNodeHandler = (state: DiagramState, payload: string): DiagramState => {
+    const nodeToRemoveIndex = state.model.nodeDataArray.findIndex(node => node.key === payload);
     if (nodeToRemoveIndex === -1) {
         return state;
     }
@@ -105,10 +84,7 @@ const removeNodeHandler = (
     };
 };
 
-const removeLinkHandler = (
-    state: DiagramState,
-    payload: LinkModel
-): DiagramState => {
+const removeLinkHandler = (state: DiagramState, payload: LinkModel): DiagramState => {
     const linkToRemoveIndex = state.model.linkDataArray.findIndex(
         link => link.from === payload.from && link.to === payload.to
     );
@@ -127,23 +103,15 @@ const removeLinkHandler = (
     };
 };
 
-const nodeSelectedHandler = (
-    state: DiagramState,
-    payload: string
-): DiagramState => {
+const nodeSelectedHandler = (state: DiagramState, payload: string): DiagramState => {
     return {
         ...state,
         selectedNodeKeys: [...state.selectedNodeKeys, payload]
     };
 };
 
-const nodeDeselectedHandler = (
-    state: DiagramState,
-    payload: string
-): DiagramState => {
-    const nodeIndexToRemove = state.selectedNodeKeys.findIndex(
-        key => key === payload
-    );
+const nodeDeselectedHandler = (state: DiagramState, payload: string): DiagramState => {
+    const nodeIndexToRemove = state.selectedNodeKeys.findIndex(key => key === payload);
     if (nodeIndexToRemove === -1) {
         return state;
     }
@@ -156,9 +124,7 @@ const nodeDeselectedHandler = (
     };
 };
 
-export const diagramReducer: Reducer<DiagramState> = reducerWithInitialState<
-    DiagramState
->({
+export const diagramReducer: Reducer<DiagramState> = reducerWithInitialState<DiagramState>({
     model: {
         nodeDataArray: [{ key: 'Root', color: 'lightblue' }],
         linkDataArray: []
@@ -175,5 +141,4 @@ export const diagramReducer: Reducer<DiagramState> = reducerWithInitialState<
     .build();
 
 export const modelSelector = (state: DiagramState) => state.model;
-export const nodeSelectionSelector = (state: DiagramState) =>
-    state.selectedNodeKeys;
+export const nodeSelectionSelector = (state: DiagramState) => state.selectedNodeKeys;
