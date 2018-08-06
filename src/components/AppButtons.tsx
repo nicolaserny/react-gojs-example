@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { DiagramState, NodeModel } from '../reducers/diagramReducer';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { init, updateNodeColor, addNode } from '../actions/diagram';
 import { Action } from 'typescript-fsa';
 import { DiagramModel, LinkModel } from 'react-gojs';
+import { Dispatch } from 'redux';
 
 export interface AppButtonsDispatchProps {
     initHandler: () => void;

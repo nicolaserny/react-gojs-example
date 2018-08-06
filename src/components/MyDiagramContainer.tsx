@@ -1,7 +1,8 @@
 import * as React from 'react';
 import MyDiagram from './MyDiagram';
 import { DiagramState, modelSelector, NodeModel } from '../reducers/diagramReducer';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { nodeSelected, nodeDeselected, removeNode, removeLink } from '../actions/diagram';
 import { DiagramModel, LinkModel, ModelChangeEvent, ModelChangeEventType } from 'react-gojs';
 import { Action } from 'typescript-fsa';
