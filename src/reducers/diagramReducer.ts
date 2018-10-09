@@ -7,7 +7,9 @@ import {
     nodeSelected,
     nodeDeselected,
     removeNode,
-    removeLink
+    removeLink,
+    UpdateNodeText,
+    UpdateNodeTextEvent
 } from '../actions/diagram';
 import { BaseNodeModel, DiagramModel, LinkModel } from 'react-gojs';
 
@@ -17,6 +19,7 @@ export interface DiagramState {
 }
 
 export interface NodeModel extends BaseNodeModel {
+    label: string;
     color: string;
 }
 
@@ -50,6 +53,25 @@ const updateNodeColorHandler = (state: DiagramState): DiagramState => {
     };
 };
 
+const updateNodeTextHandler = (state: DiagramState, payload: UpdateNodeTextEvent): DiagramState => {
+    const nodeIndex = state.model.nodeDataArray.findIndex(node => node.key === payload.key);
+
+    return {
+        ...state,
+        model: {
+            ...state.model,
+            nodeDataArray: [
+                ...state.model.nodeDataArray.slice(0, nodeIndex),
+                {
+                    ...state.model.nodeDataArray[nodeIndex],
+                    label: payload.text
+                },
+                ...state.model.nodeDataArray.slice(nodeIndex + 1)
+            ]
+        }
+    };
+};
+
 const addNodeHandler = (state: DiagramState, payload: string): DiagramState => {
     const linksToAdd: LinkModel[] = state.selectedNodeKeys.map(parent => {
         return { from: parent, to: payload };
@@ -58,7 +80,7 @@ const addNodeHandler = (state: DiagramState, payload: string): DiagramState => {
         ...state,
         model: {
             ...state.model,
-            nodeDataArray: [...state.model.nodeDataArray, { key: payload, color: getRandomColor() }],
+            nodeDataArray: [...state.model.nodeDataArray, { key: payload, label: payload, color: getRandomColor() }],
             linkDataArray:
                 linksToAdd.length > 0
                     ? [...state.model.linkDataArray].concat(linksToAdd)
@@ -126,13 +148,14 @@ const nodeDeselectedHandler = (state: DiagramState, payload: string): DiagramSta
 
 export const diagramReducer: Reducer<DiagramState> = reducerWithInitialState<DiagramState>({
     model: {
-        nodeDataArray: [{ key: 'Root', color: 'lightblue' }],
+        nodeDataArray: [{ key: 'Root', color: 'lightblue', label: 'Root' }],
         linkDataArray: []
     },
     selectedNodeKeys: []
 })
     .case(init, initHandler)
     .case(updateNodeColor, updateNodeColorHandler)
+    .case(UpdateNodeText, updateNodeTextHandler)
     .case(addNode, addNodeHandler)
     .case(removeNode, removeNodeHandler)
     .case(removeLink, removeLinkHandler)

@@ -4,18 +4,20 @@ import { Diagram, ToolManager, Node } from 'gojs';
 import { NodeModel } from '../reducers/diagramReducer';
 import { DiagramModel, LinkModel, GojsDiagram, ModelChangeEvent } from 'react-gojs';
 import './MyDiagram.css';
+import { UpdateNodeTextEvent } from '../actions/diagram';
 
 interface MyDiagramProps {
     model: DiagramModel<NodeModel, LinkModel>;
     onNodeSelection: (key: string, isSelected: boolean) => void;
-
     onModelChange: (event: ModelChangeEvent<NodeModel, LinkModel>) => void;
+    onTextChange: (event: UpdateNodeTextEvent) => void;
 }
 
 class MyDiagram extends React.PureComponent<MyDiagramProps> {
     constructor(props: MyDiagramProps) {
         super(props);
         this.createDiagram = this.createDiagram.bind(this);
+        this.onTextEdited = this.onTextEdited.bind(this);
     }
     render() {
         return (
@@ -45,7 +47,9 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
             allowZoom: false,
             allowSelect: true,
             autoScale: Diagram.Uniform,
-            contentAlignment: go.Spot.LeftCenter
+            contentAlignment: go.Spot.LeftCenter,
+            // tslint:disable-next-line:no-any
+            TextEdited: this.onTextEdited
         });
 
         myDiagram.toolManager.panningTool.isEnabled = false;
@@ -58,10 +62,21 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
                 selectionChanged: (node: Node) => this.props.onNodeSelection(node.key as string, node.isSelected)
             },
             $(go.Shape, 'RoundedRectangle', { strokeWidth: 0 }, new go.Binding('fill', 'color')),
-            $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key'))
+            $(go.TextBlock, { margin: 8, editable: true }, new go.Binding('text', 'label'))
         );
 
         return myDiagram;
+    }
+
+    private onTextEdited(e: go.DiagramEvent) {
+        const tb = e.subject;
+        if (tb === null) {
+            return;
+        }
+        const node = tb.part;
+        if (node instanceof go.Node && this.props.onTextChange) {
+            this.props.onTextChange({ key: node.key as string, text: tb.text });
+        }
     }
 }
 

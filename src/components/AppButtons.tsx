@@ -27,11 +27,11 @@ const mapDispatchToProps = (
             dispatch(
                 init({
                     nodeDataArray: [
-                        { key: 'Alpha', color: 'lightblue' },
-                        { key: 'Beta', color: 'orange' },
-                        { key: 'Gamma', color: 'lightgreen' },
-                        { key: 'Delta', color: 'pink' },
-                        { key: 'Omega', color: 'grey' }
+                        { key: 'Alpha', label: 'Alpha', color: 'lightblue' },
+                        { key: 'Beta', label: 'Beta', color: 'orange' },
+                        { key: 'Gamma', label: 'Gamma', color: 'lightgreen' },
+                        { key: 'Delta', label: 'Delta', color: 'pink' },
+                        { key: 'Omega', label: 'Omega', color: 'grey' }
                     ],
                     linkDataArray: [
                         { from: 'Alpha', to: 'Beta' },

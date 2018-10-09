@@ -3,7 +3,14 @@ import MyDiagram from './MyDiagram';
 import { DiagramState, modelSelector, NodeModel } from '../reducers/diagramReducer';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { nodeSelected, nodeDeselected, removeNode, removeLink } from '../actions/diagram';
+import {
+    nodeSelected,
+    nodeDeselected,
+    removeNode,
+    removeLink,
+    UpdateNodeTextEvent,
+    UpdateNodeText
+} from '../actions/diagram';
 import { DiagramModel, LinkModel, ModelChangeEvent, ModelChangeEventType } from 'react-gojs';
 import { Action } from 'typescript-fsa';
 
@@ -14,6 +21,7 @@ interface MyDiagramContainerStateProps {
 interface MyDiagramContainerDispatchProps {
     onNodeSelection: (key: string, isSelected: boolean) => void;
     onModelChange: (event: ModelChangeEvent<NodeModel, LinkModel>) => void;
+    onTextChange: (event: UpdateNodeTextEvent) => void;
 }
 
 const mapStateToProps = (state: DiagramState) => {
@@ -23,7 +31,7 @@ const mapStateToProps = (state: DiagramState) => {
 };
 
 const mapDispatchToProps = (
-    dispatch: Dispatch<Action<string> | Action<LinkModel>>
+    dispatch: Dispatch<Action<string> | Action<LinkModel> | Action<UpdateNodeTextEvent>>
 ): MyDiagramContainerDispatchProps => {
     return {
         onNodeSelection: (key: string, isSelected: boolean) => {
@@ -46,6 +54,9 @@ const mapDispatchToProps = (
                 default:
                     break;
             }
+        },
+        onTextChange: (event: UpdateNodeTextEvent) => {
+            dispatch(UpdateNodeText(event));
         }
     };
 };
@@ -53,9 +64,17 @@ const mapDispatchToProps = (
 const MyDiagramContainer = ({
     model,
     onNodeSelection,
-    onModelChange
+    onModelChange,
+    onTextChange
 }: MyDiagramContainerStateProps & MyDiagramContainerDispatchProps) => {
-    return <MyDiagram model={model} onNodeSelection={onNodeSelection} onModelChange={onModelChange} />;
+    return (
+        <MyDiagram
+            model={model}
+            onNodeSelection={onNodeSelection}
+            onModelChange={onModelChange}
+            onTextChange={onTextChange}
+        />
+    );
 };
 
 export default connect(
