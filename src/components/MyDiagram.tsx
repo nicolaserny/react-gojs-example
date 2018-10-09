@@ -48,7 +48,6 @@ class MyDiagram extends React.PureComponent<MyDiagramProps> {
             allowSelect: true,
             autoScale: Diagram.Uniform,
             contentAlignment: go.Spot.LeftCenter,
-            // tslint:disable-next-line:no-any
             TextEdited: this.onTextEdited
         });
 
