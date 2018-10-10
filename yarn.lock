@@ -18,20 +18,20 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@types/jest@^23.3.4":
-  version "23.3.4"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.4.tgz#cc43ae176a91dcb1504839b0b9d6659386cf0af5"
-  integrity sha512-46jSw0QMerCRkhJZbOwPA0Eb9T1p74HtECsfa0GXdgjkenSGhgvK96w+e2PEPu4GF0/brUK5WQKq/rUQQFyAxA==
+"@types/jest@^23.3.5":
+  version "23.3.5"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.5.tgz#870a1434208b60603745bfd214fc3fc675142364"
+  integrity sha512-3LI+vUC3Wju28vbjIjsTKakhMB8HC4l+tMz+Z8WRzVK+kmvezE5jcOvKtBpznWSI5KDLFo+FouUhpTKoekadCA==
 
 "@types/node@*":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.0.tgz#b85a0bcf1e1cc84eb4901b7e96966aedc6f078d1"
   integrity sha512-zkYho6/4wZyX6o9UQ8rd0ReEaiEYNNCqYFIAACe2Tf9DrYlgzWW27OigYHnnztnnZQwVRpwWmZKegFmDpinIsA==
 
-"@types/node@^10.11.5":
-  version "10.11.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.5.tgz#6489ebda4452592d3fd37aefa57eedc01ed13378"
-  integrity sha512-3j1EFLfrjYRHRFjBb+RIXXwr1YGzcfpQVMP39thZa6tMY+JjVgQddPF+hsdV800JqbuLwpwAWclDpbGSAw44vQ==
+"@types/node@^10.11.6":
+  version "10.11.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.6.tgz#ce5690df6cd917a9178439a1013e39a7e565c46e"
+  integrity sha512-fnA7yvqg3oKQDb3skBif9w5RRKVKAaeKeNuLzZL37XcSiWL4IoSXQnnbchR3UnBu2EMLHBip7ZVEkqoIVBP8QQ==
 
 "@types/prop-types@*":
   version "15.5.6"
@@ -3642,10 +3642,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gojs@^1.8.26:
-  version "1.8.26"
-  resolved "https://registry.yarnpkg.com/gojs/-/gojs-1.8.26.tgz#7f3213083bc63c9576df9c3998ef5207862523f9"
-  integrity sha512-a+jNuJZGgDCzpYj/KLRdKnI2vELLVzROmXv9ttrb/8D4sJXlJxi6saDWlWddHNtg7phKggX/73I814V24bpALA==
+gojs@^1.8.31:
+  version "1.8.31"
+  resolved "https://registry.yarnpkg.com/gojs/-/gojs-1.8.31.tgz#9e566a9a5d5e9347b044a130a7a802ffaff8bb1d"
+  integrity sha512-Q52WwFBaMBRm8N01WOrxrClYtCfP2XOu3Zc8hhTXLOvm+Do4nI7WLU2Yr4iqiquraBGHQhyjPTSKCJ1w6Qtjzw==
 
 got@^6.7.1:
   version "6.7.1"
@@ -7143,12 +7143,12 @@ react-error-overlay@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.1.tgz#417addb0814a90f3a7082eacba7cee588d00da89"
   integrity sha512-xXUbDAZkU08aAkjtUvldqbvI04ogv+a1XdHxvYuHPYKIVk/42BIOD0zSKTHAWV4+gDy3yGm283z2072rA2gdtw==
 
-react-gojs@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/react-gojs/-/react-gojs-1.3.3.tgz#db1d3aa4bebd1ac3045cbca5668923abeef9dfae"
-  integrity sha512-eXb+yabQXnQsP2m/MzAu6PCTCmi0XBztXypm9VjCSg4eqmiEbrjhDuNepcCW99YJ6U2tVlygZq8ShSo2uQKh7A==
+react-gojs@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-gojs/-/react-gojs-1.4.0.tgz#907457eaf9974177e2d1c6ae979a0f9225a6d980"
+  integrity sha512-s8qTvol570akHvS95XTYPww84MhRE1D4fGObmRbGv8KHTqbhhimgUXZdth57Atuysfku4s1kuWPyDLcu0GyWQA==
   dependencies:
-    gojs "^1.8.26"
+    gojs "^1.8.31"
 
 react-redux@^5.0.7:
   version "5.0.7"
@@ -8753,10 +8753,10 @@ typescript-fsa@^3.0.0-beta-2:
   resolved "https://registry.yarnpkg.com/typescript-fsa/-/typescript-fsa-3.0.0-beta-2.tgz#1cc1d0c014c025fd51cba097776033ac4b6b753c"
   integrity sha512-qXkHih2XAtpxqd3AEVgFtCDwvBlAMl2miVy1TmS+wXgiRlVw7orf2qIh3C8faANhD34n75Ui8x5ydQ40uzuskA==
 
-typescript@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.1.tgz#3362ba9dd1e482ebb2355b02dfe8bcd19a2c7c96"
-  integrity sha512-Veu0w4dTc/9wlWNf2jeRInNodKlcdLgemvPsrNpfu5Pq39sgfFjvIIgTsvUHCoLBnMhPoUA+tFxsXjU6VexVRQ==
+typescript@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.2.tgz#c03a5d16f30bb60ad8bb6fe8e7cb212eedeec950"
+  integrity sha512-gOoGJWbNnFAfP9FlrSV63LYD5DJqYJHG5ky1kOXSl3pCImn4rqWy/flyq1BRd4iChQsoCqjbQaqtmXO4yCVPCA==
 
 ua-parser-js@^0.7.9:
   version "0.7.17"
