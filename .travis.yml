@@ -15,8 +15,6 @@ install:
 script:
 - yarn run build
 deploy:
-  edge:
-    branch: v1.8.47
   provider: pages
   skip_cleanup: true
   github_token: $github_token
