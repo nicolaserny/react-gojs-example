@@ -4238,7 +4238,7 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gojs@^1.8.31:
+gojs@^1.8.35:
   version "1.8.35"
   resolved "https://registry.yarnpkg.com/gojs/-/gojs-1.8.35.tgz#38362d20eaebf429a6468ae7f3eb5d875522d8d0"
   integrity sha512-fVQ4a4jAN84nVEv2TCXuCDRRFc02Y09de1sAbUYyAIHtMYCZWMF24jBaOX4FLqOjtvTsJsZcDXuVQldgJT4RwA==
@@ -8060,12 +8060,12 @@ react-error-overlay@^5.1.1:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.1.tgz#56f0439f001ff3588da0f479a86482ccb1e708cb"
   integrity sha512-gJcOyak5ri9mzhpFObSAkCqNNBCVZE8LaR/mX37agULgSL0dobgX11NVSIetvNzhHMkr6CIqV0xiutvvcjBtkw==
 
-react-gojs@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-gojs/-/react-gojs-1.4.0.tgz#907457eaf9974177e2d1c6ae979a0f9225a6d980"
-  integrity sha512-s8qTvol570akHvS95XTYPww84MhRE1D4fGObmRbGv8KHTqbhhimgUXZdth57Atuysfku4s1kuWPyDLcu0GyWQA==
+react-gojs@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-gojs/-/react-gojs-1.4.1.tgz#f7b0ea1d15896aae89cbf958a646550f543109d0"
+  integrity sha512-4OkKdlEdqoSqsm4ngmsNJ5q1LnIVypsCwSOYYwx++mJGlpv+3nKE+XFKMF66xASnmdsuyUiNrkYqkBl1O1cqeA==
   dependencies:
-    gojs "^1.8.31"
+    gojs "^1.8.35"
 
 react-is@^16.3.2, react-is@^16.6.3:
   version "16.7.0"
