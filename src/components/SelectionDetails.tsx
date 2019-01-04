@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { DiagramState, nodeSelectionSelector } from '../reducers/diagramReducer';
 import { connect } from 'react-redux';
 

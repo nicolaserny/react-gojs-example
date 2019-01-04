@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, Middleware, Reducer } from 'redux';
+import { createStore, applyMiddleware, Middleware } from 'redux';
 
-export const create = (mainReducer: Reducer<{}>) => {
+export const create = mainReducer => {
     const middlewares: Array<Middleware> = [];
 
     if (process.env.NODE_ENV !== `production`) {

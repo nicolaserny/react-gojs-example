@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { Provider } from 'react-redux';
 import { create } from './store';
 import { diagramReducer } from './reducers/diagramReducer';
-import * as go from 'gojs';
+import go from 'gojs';
 
 const gojsKey = process.env.REACT_APP_GOJS_KEY;
 

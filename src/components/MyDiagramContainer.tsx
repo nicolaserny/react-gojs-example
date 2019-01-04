@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import MyDiagram from './MyDiagram';
 import { DiagramState, modelSelector, NodeModel } from '../reducers/diagramReducer';
 import { connect } from 'react-redux';

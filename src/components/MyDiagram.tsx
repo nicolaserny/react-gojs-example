@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as go from 'gojs';
+import React from 'react';
+import go from 'gojs';
 import { Diagram, ToolManager, Node } from 'gojs';
 import { NodeModel } from '../reducers/diagramReducer';
 import { DiagramModel, LinkModel, GojsDiagram, ModelChangeEvent } from 'react-gojs';

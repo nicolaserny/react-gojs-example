@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './App.css';
 import AppButtons from './components/AppButtons';
 import MyDiagramContainer from './components/MyDiagramContainer';
